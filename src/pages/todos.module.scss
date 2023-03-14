@@ -1,0 +1,21 @@
+.todocontainer {
+  display: flex;
+  position: relative;
+  background: blue;
+
+  .todoList {
+    padding: 1rem;
+    background: #fff;
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100vh;
+    //max-height: 100vh;
+    z-index: var(--maxzindex);
+
+    &.active {
+      left: 0;
+    }
+  }
+}
