@@ -1,5 +1,9 @@
 import TodosList from "../components/todos/TodosList";
 import css from "./todos.module.scss";
+import Input from "../components/UI/Input";
+import Button from "../components/UI/Button";
+import {Link, useParams} from "react-router-dom";
+import TodoItems from "../components/todos/TodoItems";
 
 const DATA_DAME = [
     {
@@ -29,11 +33,22 @@ const DATA_DAME = [
 ];
 
 const Todos = (props) => {
+    const params = useParams();
     console.log('todo', props)
     return (
         <div className={css.todocontainer}>
-            <div className={css.todoList}>{<TodosList list={DATA_DAME}/>}</div>
-            <div className={css.todoItem}>items</div>
+
+            <div className={css.todoList}>
+                <div className={css.form}>
+                    <form action="">
+                        <Input placeholder={'search'}/>
+                        <Link to={'/add'}>new</Link>
+                    </form>
+                </div>
+                {<TodosList list={DATA_DAME}/>}
+            </div>
+            {params.id ? <div className={css.todoItem}><TodoItems id={params.id}/></div> :
+                <div className={'center'}>Select ToDo</div>}
         </div>
     );
 };

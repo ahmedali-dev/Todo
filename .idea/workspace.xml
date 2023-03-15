@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="47abda2d-8341-4e00-ad12-dea9c5124ad8" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/todos/TodosItem.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Router.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Router.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header/Header.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/Header.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/UI/Input.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UI/Input.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/todos/TodoItems.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/todos/TodoItems.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/todos/TodosList.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/todos/TodosList.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Todos.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Todos.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/todos.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/todos.module.scss" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+        <option value="SCSS File" />
+      </list>
+    </option>
+  </component>
+  <component name="FormatOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2MI0id5OowuULmfTP2NEH5WHUim" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "D:/bootcamp/projects/react/reactRouter",
+    "list.type.of.created.stylesheet": "SCSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "editing.templates",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\bootcamp\projects\react\defile - Copy\src\components\icons" />
+      <recent name="D:\bootcamp\projects\react\defile - Copy\src\components" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="47abda2d-8341-4e00-ad12-dea9c5124ad8" name="Changes" comment="" />
+      <created>1677439920002</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1677439920002</updated>
+      <workItem from="1677439925238" duration="12259000" />
+      <workItem from="1677466254994" duration="51000" />
+      <workItem from="1677466325237" duration="625000" />
+      <workItem from="1677529268925" duration="4113000" />
+      <workItem from="1677722067657" duration="17506000" />
+      <workItem from="1678249801843" duration="16754000" />
+      <workItem from="1678365113448" duration="5111000" />
+      <workItem from="1678380534112" duration="3138000" />
+      <workItem from="1678787850752" duration="5214000" />
+      <workItem from="1678854180271" duration="5059000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+</project>
