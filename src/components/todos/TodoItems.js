@@ -19,7 +19,7 @@ const TodoItems = (props) => {
     if (!getTodo) {
         return <div className={'center'}>not found todo</div>
     }
-    getTodo = getTodo.child ? JSON.parse(getTodo.child) : null;
+    getTodo = getTodo.child ? JSON.parse(getTodo.child) : "";
 
 
     const additemhandler = (e) => {
@@ -27,10 +27,20 @@ const TodoItems = (props) => {
 
         if (todoItemtext.current.value.length === 0) return;
 
-        const newchild = [...getTodo, {
-            id: Math.floor(getTodo[getTodo.length - 1].id + 1),
-            item: todoItemtext.current.value
-        }]
+
+        let newchild;
+        if (getTodo) {
+            const counter = getTodo.child !== null ? getTodo[getTodo.length - 1].id : 0;
+            newchild = [...getTodo, {
+                id: Math.floor(counter + 1),
+                item: todoItemtext.current.value
+            }]
+        } else {
+            newchild = [{
+                id: Math.floor(1),
+                item: todoItemtext.current.value
+            }]
+        }
 
         // console.log(newchild)
         const todo = {id: props.id, child: newchild};
