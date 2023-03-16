@@ -1,9 +1,22 @@
 import todosList from "../components/todos/TodosList";
+import {GetTodo} from "../Hooks/GetTodo";
+import {createAsyncThunk} from "@reduxjs/toolkit";
 
 const {createSlice} = require("@reduxjs/toolkit");
 const initstate = {
-    data: []
+    data: [],
+    isLoading: false,
+    error: '',
 }
+
+export const fetchData = createAsyncThunk('data/fetchdata', async () => {
+    const req = await fetch('https://sql.ahmedali-dev.repl.co/', {
+        method: "POST"
+    });
+    const json = await req.json();
+    return json;
+})
+
 const TodoList = createSlice({
     name: 'todolist',
     initialState: initstate,
@@ -13,11 +26,38 @@ const TodoList = createSlice({
             state.data = action.payload.data;
         },
         addTodoList: (state, action) => {
-            fetch("")
+            const {addData} = action.payload;
+            fetch("https://sql.ahmedali-dev.repl.co/add", {
+                method: "POST",
+                body: JSON.stringify(addData)
+            });
+        },
+        addchild: (state, action) => {
+            const {addData} = action.payload;
+            console.log(addData);
+            fetch("https://sql.ahmedali-dev.repl.co/update", {
+                method: "POST",
+                body: JSON.stringify(addData)
+            });
         }
+    },
+    extraReducers: (builder) => {
+        builder.addCase(fetchData.pending, (state) => {
+            state.isLoading = true;
+        });
+        builder.addCase(fetchData.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.data = [];
+            console.log(action.payload.data)
+            state.data = action.payload.data;
+        });
+        builder.addCase(fetchData.rejected, (state, action) => {
+            state.isLoading = false;
+            state.error = action.error.message;
+        });
     }
 });
 
-export const {getTodoList} = TodoList.actions;
+export const {getTodoList, addTodoList, addchild} = TodoList.actions;
 
 export default TodoList.reducer;

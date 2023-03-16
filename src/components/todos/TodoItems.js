@@ -1,50 +1,17 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import css from './TodosItem.module.scss'
 import {Link} from "react-router-dom";
 import Input from "../UI/Input";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import Button from "../UI/Button";
+import {addchild, fetchData} from "../../store/TodoList";
 
 
 const TodoItems = (props) => {
 
 
-    const DATA_DAME = [
-        {
-            id: "p1",
-            todo: "hellow rold",
-            time: 1677782912479,
-            child: [
-                {
-                    id: '1',
-                    todo: 'hello p1 i am child 1',
-                    time: 333333333
-                },
-                {
-                    id: '2',
-                    todo: 'hello p1 i am child 1',
-                    time: 333333333
-                }
-            ],
-        },
-        {
-            id: "p2",
-            todo: "hello wrold",
-            time: 1677722912479,
-            child: [],
-        },
-        {
-            id: "p3",
-            todo: "promodoro",
-            time: 1667782912479,
-            child: [],
-        },
-        {
-            id: "p4",
-            todo: "fetch data use javascript",
-            time: 1377782912479,
-            child: [],
-        },
-    ];
+    const dispatch = useDispatch();
+    const todoItemtext = useRef(null);
     const {data} = useSelector(state => state.list)
     let getTodo = data.find(todo => todo.id == props.id);
 
@@ -52,8 +19,25 @@ const TodoItems = (props) => {
     if (!getTodo) {
         return <div className={'center'}>not found todo</div>
     }
-    getTodo = JSON.parse(getTodo.child);
+    getTodo = getTodo.child ? JSON.parse(getTodo.child) : null;
 
+
+    const additemhandler = (e) => {
+        e.preventDefault();
+
+        if (todoItemtext.current.value.length === 0) return;
+
+        const newchild = [...getTodo, {
+            id: Math.floor(getTodo[getTodo.length - 1].id + 1),
+            item: todoItemtext.current.value
+        }]
+
+        // console.log(newchild)
+        const todo = {id: props.id, child: newchild};
+        dispatch(addchild({addData: todo}))
+        dispatch(fetchData());
+
+    }
     const ToDosItem = (data) =>
         <div className={css.item} key={data.id}>
             <div className={css.item_content}>
@@ -73,9 +57,9 @@ const TodoItems = (props) => {
     return (
         <>
             <div className={css.form}>
-                <form action="">
-                    <Input placeholder={'search'}/>
-                    <Link to={`/add/${props.id}`}>new</Link>
+                <form action="" onSubmit={additemhandler}>
+                    <Input ref={todoItemtext} placeholder={'add new item'}/>
+                    <Button to={`/add/${props.id}`} text={'item'}></Button>
                 </form>
             </div>
             {!getTodo ? <div className={'center'}>ToDo list is empty</div> :

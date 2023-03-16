@@ -1,6 +1,6 @@
 import {useEffect, useLayoutEffect, useState} from "react";
 import {useDispatch} from "react-redux";
-import {getTodoList} from "../store/TodoList";
+import {addTodoList, getTodoList} from "../store/TodoList";
 
 export const GetTodo = () => {
     const dispath = useDispatch();
@@ -14,11 +14,5 @@ export const GetTodo = () => {
         }
 
         getdata();
-    }, []);
-
-    // useEffect(() => {
-    //     console.log(data)
-    //
-    // }, [])
-
+    }, [getTodoList()]);
 }

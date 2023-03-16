@@ -1,11 +1,15 @@
 import "./App.css";
 import Header from "./components/Header/Header";
-import {useState} from "react";
-import {GetTodo} from "./Hooks/GetTodo";
+import {useDispatch} from "react-redux";
+import {useEffect} from "react";
+import {fetchData} from "./store/TodoList";
 
 const App = (props) => {
 
-    GetTodo();
+    const dispath = useDispatch();
+    useEffect(() => {
+        dispath(fetchData());
+    }, []);
 
     return (
         <>

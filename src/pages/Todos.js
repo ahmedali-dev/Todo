@@ -4,52 +4,42 @@ import Input from "../components/UI/Input";
 import Button from "../components/UI/Button";
 import {Link, useParams} from "react-router-dom";
 import TodoItems from "../components/todos/TodoItems";
-import {useSelector} from "react-redux";
-
-const DATA_DAME = [
-    {
-        id: "p1",
-        todo: "hellow rold",
-        time: 1677782912479,
-        child: {},
-    },
-    {
-        id: "p2",
-        todo: "hello wrold",
-        time: 1677722912479,
-        child: {},
-    },
-    {
-        id: "p3",
-        todo: "promodoro",
-        time: 1667782912479,
-        child: {},
-    },
-    {
-        id: "p4",
-        todo: "fetch data use javascript",
-        time: 1377782912479,
-        child: {},
-    },
-];
-
+import {useDispatch, useSelector} from "react-redux";
+import {useRef, useState} from "react";
+import {addTodoList, fetchData} from "../store/TodoList";
+import {GetTodo, Ho} from "../Hooks/GetTodo";
 
 const Todos = (props) => {
-    const {data} = useSelector(state => state.list)
+
+    const [addUi, setAddUi] = useState(false);
+    const {data, isLoading} = useSelector(state => state.list)
     const {headerOpen} = useSelector(state => state.style);
     const params = useParams();
-    console.log('todo', props)
+
+    const todoListText = useRef(null);
+    const dispatch = useDispatch();
+    const addtodoHanlder = (e) => {
+        e.preventDefault()
+        if (todoListText.current.value.length === 0) return;
+        const data = {
+            todo: todoListText.current.value,
+            child: null
+        };
+        dispatch(addTodoList({addData: data}))
+        dispatch(fetchData());
+    }
     return (
         <div className={css.todocontainer}>
 
             <div className={`${css.todoList} ${headerOpen ? css.active : null}`}>
                 <div className={css.form}>
-                    <form action="">
-                        <Input placeholder={'search'}/>
-                        <Link to={'/add'}>new</Link>
+                    <form action="" onSubmit={addtodoHanlder}>
+                        <Input ref={todoListText} placeholder={'add todo'}/>
+                        {/*onClick={() => setAddUi(!addUi)}*/}
+                        <Button text={'new'}></Button>
                     </form>
                 </div>
-                {<TodosList list={data}/>}
+                {isLoading ? <div>isloading</div> : <TodosList list={data}/>}
             </div>
             {params.id ? <div className={css.todoItem}><TodoItems id={params.id}/></div> :
                 <div className={'center'}>Select ToDo</div>}
