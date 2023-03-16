@@ -4,6 +4,7 @@ import Input from "../components/UI/Input";
 import Button from "../components/UI/Button";
 import {Link, useParams} from "react-router-dom";
 import TodoItems from "../components/todos/TodoItems";
+import {useSelector} from "react-redux";
 
 const DATA_DAME = [
     {
@@ -33,12 +34,13 @@ const DATA_DAME = [
 ];
 
 const Todos = (props) => {
+    const {headerOpen} = useSelector(state => state.style);
     const params = useParams();
     console.log('todo', props)
     return (
         <div className={css.todocontainer}>
 
-            <div className={css.todoList}>
+            <div className={`${css.todoList} ${headerOpen ? css.active : null}`}>
                 <div className={css.form}>
                     <form action="">
                         <Input placeholder={'search'}/>
