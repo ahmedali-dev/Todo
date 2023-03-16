@@ -19,6 +19,12 @@ const pages = [
             element: <Todos/>
         }
     ),
+    route("/", <Todos/>,
+        {
+            path: "todos/:id",
+            element: <Todos/>
+        }
+    ),
     // route(),
     route("/add", <AddTodo/>),
     route("/edit/:id", <EditeTodo/>),
