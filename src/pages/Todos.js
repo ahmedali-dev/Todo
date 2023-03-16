@@ -33,7 +33,9 @@ const DATA_DAME = [
     },
 ];
 
+
 const Todos = (props) => {
+    const {data} = useSelector(state => state.list)
     const {headerOpen} = useSelector(state => state.style);
     const params = useParams();
     console.log('todo', props)
@@ -47,7 +49,7 @@ const Todos = (props) => {
                         <Link to={'/add'}>new</Link>
                     </form>
                 </div>
-                {<TodosList list={DATA_DAME}/>}
+                {<TodosList list={data}/>}
             </div>
             {params.id ? <div className={css.todoItem}><TodoItems id={params.id}/></div> :
                 <div className={'center'}>Select ToDo</div>}

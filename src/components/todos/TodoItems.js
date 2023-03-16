@@ -2,6 +2,7 @@ import React from 'react';
 import css from './TodosItem.module.scss'
 import {Link} from "react-router-dom";
 import Input from "../UI/Input";
+import {useSelector} from "react-redux";
 
 
 const TodoItems = (props) => {
@@ -44,37 +45,41 @@ const TodoItems = (props) => {
             child: [],
         },
     ];
-    const getTodo = DATA_DAME.find(todo => todo.id == props.id);
+    const {data} = useSelector(state => state.list)
+    let getTodo = data.find(todo => todo.id == props.id);
 
+    console.log(getTodo)
     if (!getTodo) {
         return <div className={'center'}>not found todo</div>
     }
+    getTodo = JSON.parse(getTodo.child);
 
-    const ToDosItem = (data) => <div className={css.item}>
-        <div className={css.item_content}>
-            <div className={css.item_content_todoname}>{data.todo}</div>
-            <div className={css.item_content__todotime}>{data.time}</div>
-        </div>
+    const ToDosItem = (data) =>
+        <div className={css.item} key={data.id}>
+            <div className={css.item_content}>
+                <div className={css.item_content_todoname}>{data.item}</div>
+                {/*<div className={css.item_content__todotime}>{}</div>*/}
+            </div>
 
-        <div className={css.item_option}>
-            <Link to={`/edit/${props.id}/${data.id}`}>
-                <i className="lar la-edit"></i>
-            </Link>
-            <button>
-                <i className="lar la-trash-alt"></i>
-            </button>
+            <div className={css.item_option}>
+                <Link to={`/edit/${props.id}/${data.id}`}>
+                    <i className="lar la-edit"></i>
+                </Link>
+                <button>
+                    <i className="lar la-trash-alt"></i>
+                </button>
+            </div>
         </div>
-    </div>
     return (
         <>
             <div className={css.form}>
                 <form action="">
                     <Input placeholder={'search'}/>
-                    <Link to={`/add/${getTodo.id}`}>new</Link>
+                    <Link to={`/add/${props.id}`}>new</Link>
                 </form>
             </div>
-            {getTodo.child.length === 0 ? <div className={'center'}>ToDo list is empty</div> :
-                getTodo.child.map(singletodo => ToDosItem(singletodo))}
+            {!getTodo ? <div className={'center'}>ToDo list is empty</div> :
+                getTodo.map(singletodo => ToDosItem(singletodo))}
         </>
     );
 };

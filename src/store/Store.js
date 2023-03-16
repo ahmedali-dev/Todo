@@ -1,10 +1,12 @@
 import {configureStore} from "@reduxjs/toolkit";
 import style from './Style';
+import TodoList from "./TodoList";
 
 
 const Store = configureStore({
     reducer: {
-        style: style
+        style: style,
+        list: TodoList
     }
 })
 

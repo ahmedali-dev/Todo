@@ -1,13 +1,12 @@
 import "./App.css";
 import Header from "./components/Header/Header";
 import {useState} from "react";
+import {GetTodo} from "./Hooks/GetTodo";
 
 const App = (props) => {
 
-    const [showNav, setShowNav] = useState(false);
-    const shownavhandler = () => {
-        setShowNav(!showNav);
-    }
+    GetTodo();
+
     return (
         <>
             <Header/>

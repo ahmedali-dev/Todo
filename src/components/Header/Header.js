@@ -4,7 +4,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {openHeader} from './../../store/Style';
 
 const Header = () => {
-
     const state = useSelector(state => state.style);
     const dispatch = useDispatch();
     console.log(state.headerOpen)

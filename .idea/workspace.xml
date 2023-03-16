@@ -5,8 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="47abda2d-8341-4e00-ad12-dea9c5124ad8" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Hooks/GetTodo.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/store/TodoList.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Router.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Router.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/Header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/todos/TodoItems.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/todos/TodoItems.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/todos/TodosList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/todos/TodosList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Todos.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Todos.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/Store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/Store.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +89,7 @@
       <workItem from="1678380534112" duration="3138000" />
       <workItem from="1678787850752" duration="5214000" />
       <workItem from="1678854180271" duration="6128000" />
-      <workItem from="1678952999492" duration="3024000" />
+      <workItem from="1678952999492" duration="10510000" />
     </task>
     <servers />
   </component>
@@ -102,5 +109,17 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/components/todos/TodoItems.js</url>
+          <line>50</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

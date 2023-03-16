@@ -12,7 +12,7 @@ const TodosList = ({list}) => {
                 <div className={css.item} key={item.id} id={item.id}>
                     <NavLink onClick={() => dispath(openHeader())} to={`/todos/${item.id}`}>
                         <div className={css.item_content}>
-                            <div className={css.item_content_todoname}>{item.todo}</div>
+                            <div className={css.item_content_todoname}>{item.todos}</div>
                             <div className={css.item_content__todotime}>{item.time}</div>
                         </div>
                     </NavLink>
