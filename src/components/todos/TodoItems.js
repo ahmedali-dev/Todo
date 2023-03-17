@@ -46,6 +46,7 @@ const TodoItems = (props) => {
         const todo = {id: props.id, child: newchild};
         dispatch(addchild({addData: todo}))
         dispatch(fetchData());
+        todoItemtext.current.value = "";
 
     }
     const ToDosItem = (data) =>

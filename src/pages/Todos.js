@@ -39,7 +39,7 @@ const Todos = (props) => {
                         <Button text={'new'}></Button>
                     </form>
                 </div>
-                {isLoading ? <div>isloading</div> : <TodosList list={data}/>}
+                {isLoading ? <div>isloading</div> : <div className={css.row_y}><TodosList list={data}/></div>}
             </div>
             {params.id ? <div className={css.todoItem}><TodoItems id={params.id}/></div> :
                 <div className={'center'}>Select ToDo</div>}
