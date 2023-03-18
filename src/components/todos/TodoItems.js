@@ -4,7 +4,12 @@ import { Link } from "react-router-dom";
 import Input from "../UI/Input";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../UI/Button";
-import { addchild, fetchData, updateTodoItem } from "../../store/TodoList";
+import {
+	addchild,
+	fetchData,
+	updateTodoItem,
+	deleteTodoItem,
+} from "../../store/TodoList";
 
 const TodoItems = (props) => {
 	const [edite, setedite] = useState(null);
@@ -84,6 +89,28 @@ const TodoItems = (props) => {
 			dispatch(fetchData());
 		}
 	};
+
+	const deleteitem = (id) => {
+		const getitem = data.find((i) => i.id == props.id);
+		//		console.log(getitem);
+		if (!getitem) return;
+		if (!getitem.child) return;
+		const childs = JSON.parse(getitem.child);
+
+		const childfilter = childs.filter((f) => f.id !== id);
+
+		dispatch(
+			deleteTodoItem({
+				id: props.id,
+				actionup: "",
+				child: childfilter,
+			})
+		);
+
+		if (isLoading == false) {
+			dispatch(fetchData());
+		}
+	};
 	const ToDosItem = (data) => (
 		<div className={css.item} key={data.id}>
 			{edite !== data.id ? (
@@ -121,12 +148,16 @@ const TodoItems = (props) => {
 					className={css.editbtn}
 					text={<i className="lar la-edit"></i>}
 				></Button>
-				<button>
+				<button onClick={() => deleteitem(data.id)}>
 					<i className="lar la-trash-alt"></i>
 				</button>
 			</div>
 		</div>
 	);
+
+	if (isLoading) {
+		return <div>isloading</div>;
+	}
 	return (
 		<>
 			<div className={css.form}>

@@ -79,6 +79,20 @@ const TodoList = createSlice({
 			});
 			state.isLoading = false;
 		},
+
+		deleteTodoItem: (state, action) => {
+			state.isLoading = true;
+			const { id, actionup, child } = action.payload;
+			fetch("https://sql.ahmedali-dev.repl.co/update", {
+				method: "POST",
+				body: JSON.stringify({
+					id,
+					action: actionup,
+					child: child,
+				}),
+			});
+			state.isLoading = false;
+		},
 	},
 	extraReducers: (builder) => {
 		builder.addCase(fetchData.pending, (state) => {
@@ -104,6 +118,7 @@ export const {
 	deleteTodoList,
 	updateTodoList,
 	updateTodoItem,
+	deleteTodoItem,
 } = TodoList.actions;
 
 export default TodoList.reducer;
