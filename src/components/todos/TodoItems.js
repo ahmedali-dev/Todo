@@ -1,82 +1,154 @@
-import React, {useRef} from 'react';
-import css from './TodosItem.module.scss'
-import {Link} from "react-router-dom";
+import React, { useRef, useState } from "react";
+import css from "./TodosItem.module.scss";
+import { Link } from "react-router-dom";
 import Input from "../UI/Input";
-import {useDispatch, useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Button from "../UI/Button";
-import {addchild, fetchData} from "../../store/TodoList";
-
+import { addchild, fetchData, updateTodoItem } from "../../store/TodoList";
 
 const TodoItems = (props) => {
+	const [edite, setedite] = useState(null);
+	const dispatch = useDispatch();
+	const todoItemtext = useRef(null);
+	const itemupdate = useRef(null);
+	const { data, isLoading } = useSelector((state) => state.list);
+	let getTodo = data.find((todo) => todo.id == props.id);
 
+	console.log(getTodo);
+	if (!getTodo) {
+		return <div className={"center"}>not found todo</div>;
+	}
+	getTodo = getTodo.child ? JSON.parse(getTodo.child) : "";
 
-    const dispatch = useDispatch();
-    const todoItemtext = useRef(null);
-    const {data} = useSelector(state => state.list)
-    let getTodo = data.find(todo => todo.id == props.id);
+	const additemhandler = (e) => {
+		e.preventDefault();
 
-    console.log(getTodo)
-    if (!getTodo) {
-        return <div className={'center'}>not found todo</div>
-    }
-    getTodo = getTodo.child ? JSON.parse(getTodo.child) : "";
+		if (todoItemtext.current.value.length === 0) return;
 
+		let newchild;
+		if (getTodo) {
+			const counter =
+				getTodo.child !== null
+					? getTodo[getTodo.length - 1].id
+					: 0;
+			newchild = [
+				...getTodo,
+				{
+					id: Math.floor(counter + 1),
+					item: todoItemtext.current.value,
+				},
+			];
+		} else {
+			newchild = [
+				{
+					id: Math.floor(1),
+					item: todoItemtext.current.value,
+				},
+			];
+		}
 
-    const additemhandler = (e) => {
-        e.preventDefault();
+		// console.log(newchild)
+		const todo = { id: props.id, child: newchild };
+		dispatch(addchild({ addData: todo }));
+		if (isLoading) return;
+		dispatch(fetchData());
+		todoItemtext.current.value = "";
+	};
 
-        if (todoItemtext.current.value.length === 0) return;
+	const editehandler = (id) => {
+		console.log(id);
+		const getitem = data.find((i) => i.id == props.id);
+		//		console.log(getitem);
+		if (!getitem) return;
+		if (!getitem.child) return;
+		const childs = JSON.parse(getitem.child);
+		//const getchildupdate = child.find((f) => f.id == id);
+		//console.log(getchildupdate);
+		//if (!getchildupdate) return;
+		childs.map((child) => {
+			if (child.id == id) {
+				child.item = itemupdate.current.value;
+			}
+		});
 
+		//console.log(childs);
+		dispatch(
+			updateTodoItem({
+				id: props.id,
+				actionup: "",
+				child: childs,
+			})
+		);
+		setedite(null);
+		if (isLoading == false) {
+			dispatch(fetchData());
+		}
+	};
+	const ToDosItem = (data) => (
+		<div className={css.item} key={data.id}>
+			{edite !== data.id ? (
+				<div className={css.item_content}>
+					<div
+						className={
+							css.item_content_todoname
+						}
+					>
+						{data.item}
+					</div>
+					{/*<div className={css.item_content__todotime}>{}</div>*/}
+				</div>
+			) : (
+				<div>
+					<form
+						onSubmit={(e) => {
+							e.preventDefault();
+							editehandler(data.id);
+						}}
+					>
+						<Input
+							ref={itemupdate}
+							type="text"
+							placeholder="edite"
+							defaultValue={data.item}
+						/>
+					</form>
+				</div>
+			)}
 
-        let newchild;
-        if (getTodo) {
-            const counter = getTodo.child !== null ? getTodo[getTodo.length - 1].id : 0;
-            newchild = [...getTodo, {
-                id: Math.floor(counter + 1),
-                item: todoItemtext.current.value
-            }]
-        } else {
-            newchild = [{
-                id: Math.floor(1),
-                item: todoItemtext.current.value
-            }]
-        }
-
-        // console.log(newchild)
-        const todo = {id: props.id, child: newchild};
-        dispatch(addchild({addData: todo}))
-        dispatch(fetchData());
-        todoItemtext.current.value = "";
-
-    }
-    const ToDosItem = (data) =>
-        <div className={css.item} key={data.id}>
-            <div className={css.item_content}>
-                <div className={css.item_content_todoname}>{data.item}</div>
-                {/*<div className={css.item_content__todotime}>{}</div>*/}
-            </div>
-
-            <div className={css.item_option}>
-                <Link to={`/edit/${props.id}/${data.id}`}>
-                    <i className="lar la-edit"></i>
-                </Link>
-                <button>
-                    <i className="lar la-trash-alt"></i>
-                </button>
-            </div>
-        </div>
-    return (
-        <>
-            <div className={css.form}>
-                <form action="" onSubmit={additemhandler}>
-                    <Input ref={todoItemtext} placeholder={'add new item'}/>
-                    <Button to={`/add/${props.id}`} text={'item'}></Button>
-                </form>
-            </div>
-            {!getTodo ? <div className={'center'}>ToDo list is empty</div> :
-                getTodo.map(singletodo => ToDosItem(singletodo))}
-        </>
-    );
+			<div className={css.item_option}>
+				<Button
+					onClick={() => setedite(data.id)}
+					className={css.editbtn}
+					text={<i className="lar la-edit"></i>}
+				></Button>
+				<button>
+					<i className="lar la-trash-alt"></i>
+				</button>
+			</div>
+		</div>
+	);
+	return (
+		<>
+			<div className={css.form}>
+				<form action="" onSubmit={additemhandler}>
+					<Input
+						ref={todoItemtext}
+						placeholder={"add new item"}
+					/>
+					<Button text={"item"}></Button>
+				</form>
+			</div>
+			{!getTodo ? (
+				<div className={"center"}>
+					ToDo list is empty
+				</div>
+			) : (
+				getTodo.map((singletodo) =>
+					ToDosItem(singletodo)
+				)
+			)}
+		</>
+	);
 };
 
 export default TodoItems;

@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import css from "./TodosList.module.scss";
 import { openHeader } from "../../store/Style";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
 	deleteTodoList,
 	fetchData,
@@ -12,6 +12,7 @@ import Input from "./../UI/Input";
 import Button from "./../UI/Button";
 
 const TodosList = ({ list }) => {
+	const { isLoading } = useSelector((state) => state.list);
 	const dispatch = useDispatch();
 	const [edite, setedite] = useState(false);
 	const [editeid, setediteid] = useState(null);
@@ -19,9 +20,9 @@ const TodosList = ({ list }) => {
 	const deleteTodoListHandler = (id) => {
 		console.log("remove todolist", id);
 		dispatch(deleteTodoList({ id }));
-		setTimeout(() => {
+		if (isLoading == false) {
 			dispatch(fetchData());
-		}, 2000);
+		}
 		//		dispatch(fetchData());
 	};
 	const editeTodoList = (id) => {
@@ -38,8 +39,10 @@ const TodosList = ({ list }) => {
 			})
 		);
 		setTimeout(() => {
-			setediteid(null);
-			dispatch(fetchData());
+			if (isLoading == false) {
+				setediteid(null);
+				dispatch(fetchData());
+			}
 		}, 2000);
 	};
 
