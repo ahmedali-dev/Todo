@@ -39,7 +39,16 @@ const TodoList = createSlice({
                 method: "POST",
                 body: JSON.stringify(addData)
             });
-        }
+        },
+	deleteTodoList: (state, action) => {
+		const {id} = action.payload;
+		fetch("https://sql.ahmedali-dev.repl.co/delete",
+			{
+				method: 'DELETE',
+				body: JSON.stringify({id: id})
+			}
+		);
+	}
     },
     extraReducers: (builder) => {
         builder.addCase(fetchData.pending, (state) => {
@@ -58,6 +67,6 @@ const TodoList = createSlice({
     }
 });
 
-export const {getTodoList, addTodoList, addchild} = TodoList.actions;
+export const {getTodoList, addTodoList, addchild, deleteTodoList} = TodoList.actions;
 
 export default TodoList.reducer;
