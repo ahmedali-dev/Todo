@@ -32,10 +32,11 @@ const TodoItems = (props) => {
 
 		let newchild;
 		if (getTodo) {
-			const counter =
-				getTodo.child !== null
-					? getTodo[getTodo.length - 1].id
-					: 0;
+			//	const counter =
+			//		getTodo.child !== null ||
+			//? getTodo[getTodo.length - 1].id
+			//: 0;
+			const counter = props.id;
 			newchild = [
 				...getTodo,
 				{
