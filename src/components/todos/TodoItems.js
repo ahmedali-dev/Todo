@@ -37,10 +37,13 @@ const TodoItems = (props) => {
 			//? getTodo[getTodo.length - 1].id
 			//: 0;
 			const counter = props.id;
+			const time = new Date().getTime();
 			newchild = [
 				...getTodo,
 				{
-					id: Math.floor(counter + 1),
+					id: Math.floor(
+						Math.random() * 10000 + time
+					),
 					item: todoItemtext.current.value,
 				},
 			];
