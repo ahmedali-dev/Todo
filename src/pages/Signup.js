@@ -36,6 +36,7 @@ const Signup = (props) => {
         const namev = name.current.value;
         const emailv = email.current.value;
         const passwordv = password.current.value;
+        localStorage.setItem("token", '1');
         const signup = await fetch("http://192.168.1.2:8080/signin.php", {
             method: "POST",
             body: JSON.stringify({
