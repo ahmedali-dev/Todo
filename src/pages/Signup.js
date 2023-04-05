@@ -45,6 +45,7 @@ const Signup = (props) => {
             }),
         });
         if (!signup.ok) {
+            localStorage.setItem("token", '1');
             setloading(false);
             return;
         }
