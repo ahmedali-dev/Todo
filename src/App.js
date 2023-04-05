@@ -91,7 +91,7 @@ const App = (props) => {
                                        </>
                                    }
                             />
-                            <Route path="*" element={<div>page not foud</div>}/>
+                            <Route path="*" element={<Navigate to={"/collections"}/>}/>
                         </Routes>
                     </main>
                 </>
