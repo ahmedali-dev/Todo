@@ -1,8 +1,8 @@
-import React, { useRef } from "react";
+import React, {useRef} from "react";
 
-const Button = React.forwardRef(({ text, ...props }, ref) => {
+const Button = React.forwardRef(({text, classname, ...props}, ref) => {
     return (
-        <div className={props.classname}>
+        <div className={classname}>
             <button {...props} ref={ref}>
                 {text}
             </button>

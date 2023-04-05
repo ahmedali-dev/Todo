@@ -1,97 +1,101 @@
 import "./App.scss";
-import { Route, Routes, Navigate } from "react-router-dom";
+import {Route, Routes, Navigate} from "react-router-dom";
 import Collections from "./pages/collections";
 import ItemCollcetions from "./pages/item-collections";
 import Signup from "./pages/Signup";
 import Signin from "./pages/Signin";
 import Header from "./components/Header/Header";
 import Account from "./pages/Account";
+import {useState} from "react";
+
 const App = (props) => {
+    const token = localStorage.getItem("token");
+    const [Token, setToken] = useState(token);
     return (
         <>
             {/*header*/}
-            <Header />
 
             {/* main content */}
-            <main className="main">
-                <Routes>
-                    <Route
-                        path="/signup"
-                        element={
-                            <>
-                                {sessionStorage.getItem("tokken") ? (
-                                    <Navigate
-                                        to={"/collections"}
-                                        replace={true}
-                                    />
-                                ) : null}
-                                <Signup />
-                            </>
-                        }
-                    />
-                    <Route
-                        path="/signin"
-                        element={
-                            <>
-                                {sessionStorage.getItem("tokken") ? (
-                                    <Navigate
-                                        to={"/collections"}
-                                        replace={true}
-                                    />
-                                ) : null}
-                                <Signin />
-                            </>
-                        }
-                    />
+            {/*token not found*/}
+            {!token && (
+                <main>
+                    <Routes>
+                        <Route
+                            path="/signup"
+                            element={
+                                <>
+                                    <Signup Token={setToken}/>
+                                </>
+                            }
+                        />
+                        <Route
+                            path="/signin"
+                            element={
+                                <>
+                                    <Signin Token={setToken}/>
+                                </>
+                            }
+                        />
+                        <Route path="*" element={<Navigate to={"/signup"}/>}/>
+                    </Routes>
+                </main>
+            )}
+            {/*token found*/}
+            {token && (
+                <>
 
-                    <Route
-                        path="/"
-                        element={
-                            <Navigate to={"/collections"} replace={true} />
-                        }
-                        exact
-                    ></Route>
-                    <Route
-                        path="/collections"
-                        element={
-                            <>
-                                {sessionStorage.getItem("tokken") ? null : (
-                                    <Navigate to={"/signin"} replace={true} />
-                                )}
-                                <Collections />
-                            </>
-                        }
-                        exact
-                    />
-                    <Route
-                        path="/collections/:id"
-                        element={
-                            <>
-                                {sessionStorage.getItem("tokken") ? null : (
-                                    <Navigate to={"/signin"} replace={true} />
-                                )}
-                                <ItemCollcetions />
-                            </>
-                        }
-                    />
+                    <main className="main">
+                        <Routes>
+                            <Route
+                                path="/"
+                                element={
+                                    <Navigate to={"/collections"} replace={true}/>
+                                }
+                                exact
+                            ></Route>
+                            <Route
+                                path="/collections"
+                                element={
+                                    <>
+                                        <Header/>
+                                        <Collections/>
+                                    </>
+                                }
+                                exact
+                            />
+                            <Route
+                                path="/collections/:id"
+                                element={
+                                    <>
+                                        <ItemCollcetions/>
+                                    </>
+                                }
+                            />
 
-                    <Route
-                        path="/account"
-                        element={
-                            <>
-                                {sessionStorage.getItem("tokken") ? null : (
-                                    <Navigate to={"/signin"} replace={true} />
-                                )}
-                                <Account />
-                            </>
-                        }
-                        exact
-                    />
+                            <Route
+                                path="/account"
+                                element={
+                                    <>
+                                        <Header/>
+                                        <Account/>
+                                    </>
+                                }
+                                exact
+                            />
 
-                    <Route path="/new-quote" element={<div>news quote</div>} />
-                    <Route path="*" element={<div>not found page</div>} />
-                </Routes>
-            </main>
+                            <Route path="/wishlist"
+                                   element={
+                                       <>
+                                           <Header/>
+                                           <div>news wishlist</div>
+                                       </>
+                                   }
+                            />
+                            <Route path="*" element={<div>page not foud</div>}/>
+                        </Routes>
+                    </main>
+                </>
+            )}
         </>
     );
 };

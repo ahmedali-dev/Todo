@@ -1,153 +1,144 @@
 @mixin flex($a: center, $b: center) {
-    display: flex;
-    align-items: $a;
-    justify-content: $b;
+  display: flex;
+  align-items: $a;
+  justify-content: $b;
 }
 
 .nav {
-    background: #ffffff42;
-    backdrop-filter: blur(1rem);
-    position: fixed;
-    bottom: 1rem;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 95%;
-    height: 7rem;
-    padding: 4rem 1rem;
-    border-radius: 0.7rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    z-index: 1;
-    box-shadow: var(--shadowBlack50);
+  background: rgb(255, 255, 255);
+  backdrop-filter: blur(1rem);
+  position: fixed;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 95%;
+  height: 7rem;
+  padding: 4rem 1rem;
+  border-radius: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  z-index: 1;
+  box-shadow: var(--shadowBlack50);
 
-    &_left {
-        display: none;
-    }
+  &_left {
+    display: none;
+  }
 
-    &_right {
-        width: 100%;
-        &_list {
-            @include flex(center, space-evenly);
-            .addbtn {
-                background: blueviolet;
-                padding: 0.7rem;
-                border-radius: 1rem;
-                box-shadow: var(--shadowviolet20);
-                background: var(--cviolet50);
+  &_right {
+    width: 100%;
 
-                .icon {
-                    i {
-                        font-size: 3.4rem;
-                        font-weight: bolder;
-                        color: var(--cblue70);
-                    }
-                }
-            }
+    &_list {
+      @include flex(center, space-evenly);
 
-            a {
-                @include flex();
-                .text {
-                    display: none;
-                }
-                .icon {
-                    i {
-                        font-size: 3.4rem;
-                        color: #333;
-                    }
-                }
-                img {
-                    width: 3.5rem;
-                    height: 3.5rem;
-                    border-radius: 50%;
-                    object-fit: fit;
-                    box-shadow: var(--shadowviolet20);
-                }
 
-                &.active {
-                    padding: 0.7rem;
-                    border-radius: 1rem;
-                    box-shadow: var(--shadowviolet20);
-                    background: var(--cblue70);
+      a {
+        @include flex();
 
-                    .icon {
-                        i {
-                            font-weight: bolder;
-                            color: var(--cwhite);
-                        }
-                    }
-                }
-            }
+        .text {
+          display: none;
         }
+
+        .icon {
+
+          width: 3.5rem;
+          height: 3.5rem;
+          @include flex();
+
+          svg {
+
+            width: 3rem;
+            height: 3rem;
+            fill: #363636;
+          }
+        }
+
+        img {
+          width: 3.5rem;
+          height: 3.5rem;
+          border-radius: 50%;
+          object-fit: cover;
+          box-shadow: var(--shadowviolet20);
+        }
+
+        &.active {
+          padding: 0.7rem;
+          border-radius: 1rem;
+          box-shadow: var(--shadowviolet20);
+          background: var(--cblue70);
+
+          .icon {
+            svg {
+              fill: var(--cwhite);
+            }
+          }
+        }
+      }
     }
+  }
 }
 
 @media screen and (min-width: 768px) {
-    .nav {
-        width: 35rem;
-    }
+  .nav {
+    width: 35rem;
+  }
 }
 
 @media screen and (min-width: 1024px) {
-    .nav {
-        position: unset;
-        width: 100%;
-        transform: unset;
-        left: unset;
-        bottom: unset;
-        justify-content: space-between;
-        padding: 3rem 5rem;
-        border-radius: 0;
-        box-shadow: none;
-        &_left {
-            @include flex();
-            gap: 3rem;
+  .nav {
+    position: unset;
+    width: 100%;
+    transform: unset;
+    left: unset;
+    bottom: unset;
+    justify-content: space-between;
+    padding: 3rem 5rem;
+    border-radius: 0;
+    box-shadow: none;
 
-            &_logo {
-                //background: blue
-                font-size: 1.3rem;
-            }
-            &_list {
-                a {
-                    .text {
-                        font-size: 1.4rem;
-                    }
-                    .icon {
-                        display: none;
-                    }
-                }
-            }
-        }
+    &_left {
+      @include flex();
+      gap: 3rem;
 
-        &_right {
-            width: unset;
-
-            &_list {
-                gap: 2rem;
-
-                .addbtn {
-                    padding: 0.4rem;
-                    border-radius: 1rem;
-                }
-
-                a {
-                    &:first-child {
-                        display: none;
-                    }
-
-                    .icon {
-                        i {
-                            font-size: 3rem;
-                            color: #333;
-                        }
-                    }
-                    img {
-                        width: 3rem;
-                        height: 3rem;
-                    }
-                }
-            }
-        }
+      &_logo {
+        //background: blue
+        font-size: 1.3rem;
+      }
     }
+
+    &_right {
+      width: unset;
+
+      &_list {
+        gap: 2rem;
+
+        a {
+
+
+          &.active {
+            padding: 0.7rem 1rem;
+            border-radius: 1rem;
+            box-shadow: var(--shadowviolet20);
+            background: var(--cblue70);
+
+            .text {
+              display: block;
+              margin-left: 1rem;
+              font-size: 1.3rem;
+              color: var(--cwhite);
+            }
+
+            .icon {
+              svg {
+                fill: var(--cwhite);
+              }
+            }
+          }
+        }
+
+
+      }
+    }
+  }
 }
