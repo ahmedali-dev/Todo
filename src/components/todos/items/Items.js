@@ -4,6 +4,7 @@ import css from "./Items.module.scss";
 import RegisterForm from "../../register/Register-form";
 import Input from "../../UI/Input";
 import Button from "../../UI/Button";
+import {Mark} from "../../icons/icons";
 
 const DM = [
     {
@@ -115,19 +116,7 @@ const Items = (props) => {
                                     <input type="checkbox" id={coll.id}/>
                                     <label htmlFor={coll.id}>
                                     <span>
-                                        <svg
-                                            width="10"
-                                            height="9"
-                                            viewBox="0 0 10 9"
-                                            fill="none"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            <path
-                                                d="M1 3.5L2 7.5L9 1"
-                                                stroke="#ECF2FF"
-                                                strokeLinecap="round"
-                                            />
-                                        </svg>
+                                       <Mark/>
                                     </span>
                                     </label>
                                 </div>
@@ -166,19 +155,7 @@ const Items = (props) => {
                                     />
                                     <label htmlFor={coll.id}>
                                     <span>
-                                        <svg
-                                            width="10"
-                                            height="9"
-                                            viewBox="0 0 10 9"
-                                            fill="none"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            <path
-                                                d="M1 3.5L2 7.5L9 1"
-                                                stroke="#ECF2FF"
-                                                stroke-linecap="round"
-                                            />
-                                        </svg>
+                                        <Mark/>
                                     </span>
                                     </label>
                                 </div>

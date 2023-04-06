@@ -6,14 +6,27 @@ import Signup from "./pages/Signup";
 import Signin from "./pages/Signin";
 import Header from "./components/Header/Header";
 import Account from "./pages/Account";
-import {useState} from "react";
+import {useLayoutEffect, useState} from "react";
+import {Toaster} from "react-hot-toast";
+import {useDispatch, useSelector} from "react-redux";
+import {SignUpAction} from "./store/Slices/RegisterSlice";
 
 const App = (props) => {
-    const token = localStorage.getItem("token");
-    const [Token, setToken] = useState(token);
+
+    useLayoutEffect(() => {
+        const getToken = localStorage.getItem('token');
+        if (getToken) {
+            dispatch(SignUpAction({token: getToken}));
+        }
+    }, []);
+
+    const {token} = useSelector(state => state.register);
+    const dispatch = useDispatch();
+
     return (
         <>
             {/*header*/}
+            <Toaster/>
 
             {/* main content */}
             {/*token not found*/}
@@ -24,7 +37,7 @@ const App = (props) => {
                             path="/signup"
                             element={
                                 <>
-                                    <Signup Token={setToken}/>
+                                    <Signup/>
                                 </>
                             }
                         />
@@ -32,7 +45,7 @@ const App = (props) => {
                             path="/signin"
                             element={
                                 <>
-                                    <Signin Token={setToken}/>
+                                    <Signin/>
                                 </>
                             }
                         />
@@ -43,14 +56,11 @@ const App = (props) => {
             {/*token found*/}
             {token && (
                 <>
-
                     <main className="main">
                         <Routes>
                             <Route
                                 path="/"
-                                element={
-                                    <Navigate to={"/collections"} replace={true}/>
-                                }
+                                element={<Navigate to={"/collections"} replace={true}/>}
                                 exact
                             ></Route>
                             <Route
@@ -83,13 +93,14 @@ const App = (props) => {
                                 exact
                             />
 
-                            <Route path="/wishlist"
-                                   element={
-                                       <>
-                                           <Header/>
-                                           <div>news wishlist</div>
-                                       </>
-                                   }
+                            <Route
+                                path="/wishlist"
+                                element={
+                                    <>
+                                        <Header/>
+                                        <div>news wishlist</div>
+                                    </>
+                                }
                             />
                             <Route path="*" element={<Navigate to={"/collections"}/>}/>
                         </Routes>

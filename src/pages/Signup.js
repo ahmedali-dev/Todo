@@ -2,9 +2,12 @@ import Register from "../components/register/Register-form";
 import Input from "../components/UI/Input";
 import Button from "../components/UI/Button";
 import css from "./../components/register/Register.module.scss";
-import {useRef, useState} from "react";
+import {useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {isDisabled} from "@testing-library/user-event/dist/utils";
+import Loader from "../components/UI/Loader";
+import {toast} from "react-hot-toast";
+import {useDispatch} from "react-redux";
+import {SignUpAction} from "../store/Slices/RegisterSlice";
 
 const span = () => (
     <>
@@ -23,21 +26,28 @@ function generateRandomString(length) {
 }
 
 const Signup = (props) => {
-    const name = useRef();
-    const email = useRef();
-    const password = useRef();
-    /*  const [nameError,  */
+
+    const dispatch = useDispatch();
+
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const [nameError, setnameError] = useState('');
+    const [emailError, setemailError] = useState('');
+    const [passwordError, setpasswordError] = useState('');
     const [loading, setloading] = useState(false);
     const navigate = useNavigate();
 
     const submith = async (e) => {
         e.preventDefault();
         setloading(true);
-        const namev = name.current.value;
-        const emailv = email.current.value;
-        const passwordv = password.current.value;
-        // localStorage.setItem("token", '1');
-        const signup = await fetch("http://192.168.1.2:8080/signin.php", {
+        const namev = name;
+        const emailv = email;
+        const passwordv = password;
+
+
+        const signup = await fetch("https://todo.ahmedali-dev.repl.co/signup", {
             method: "POST",
             body: JSON.stringify({
                 name: namev,
@@ -46,16 +56,29 @@ const Signup = (props) => {
             }),
         });
         if (!signup.ok) {
-            // localStorage.setItem("token", '1');
+            toast.error("SignUp failed");
             setloading(false);
             return;
         }
         const data = await signup.json();
-        localStorage.setItem("token", data.token);
-        setloading(false);
-        props.Token(data.token);
-        navigate("/collections");
+        if (data.status != 200) {
+            toast.error("SignUp failed");
+            setnameError(data.error.name && data.error.name);
+            setemailError(data.error.email && data.error.email);
+            setpasswordError(data.error.password && data.error.password);
+            setloading(false);
+        } else {
+            toast.success(data.message);
+            setloading(false);
+            localStorage.setItem('token', data.token);
+            dispatch(SignUpAction({token: data.token}));
+            navigate("collections");
+        }
     };
+
+    if (loading) {
+        return <Loader/>;
+    }
 
     return (
         <Register
@@ -66,28 +89,31 @@ const Signup = (props) => {
         >
             <Input
                 classname={css.formGroup}
-                ref={name}
-                onChange={() => {
-                    console.log("sadfaschinage");
-                }}
+                onChange={(e) => setName(e.target.value)}
                 label="Name"
                 type="text"
                 placeholder="Name"
+                defaultValue={name}
+                error={nameError && nameError}
             />
             <Input
                 classname={css.formGroup}
-                ref={email}
+                onChange={(e) => setEmail(e.target.value)}
                 label="Email"
                 type="email"
                 placeholder="Email"
+                defaultValue={email}
+                error={emailError && emailError}
             />
 
             <Input
                 classname={css.formGroup}
-                ref={password}
+                onChange={(e) => setPassword(e.target.value)}
                 label="Password"
                 type="password"
                 placeholder="********"
+                defaultValue={password}
+                error={passwordError && passwordError}
             />
             <Button
                 text={loading ? "loading" : "SignUp"}

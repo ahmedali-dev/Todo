@@ -1,19 +1,40 @@
 import Input from "./../../UI/Input";
 import Button from "./../../UI/Button";
 import css from "./Add-collection.module.scss";
-import { useEffect, useRef } from "react";
-const AddCollections = ({ placeholder, Cancel, remove, st, ...props }) => {
+import {useEffect, useRef, useState} from "react";
+import {useDispatch} from "react-redux";
+import Loader from "../../UI/Loader";
+import AddCollectionsHook from "../../../hooks/AddCollectionsHook";
+import {ChangeIsloading} from "../../../store/Slices/RegisterSlice";
+
+const AddCollections = ({placeholder, Cancel, remove, st, ...props}) => {
+    const dispatch = useDispatch();
+    const [loading, setloading] = useState(false);
+    const [errorV, setErrorV] = useState('');
+    const [collectionValue, setCollection] = useState('');
     const collectionText = useRef(null);
     const cancel = useRef(null);
+    const [error, fetchdata] = AddCollectionsHook({
+        loading: setloading,
+        Cancel,
+        error: setErrorV,
+        collection: collectionValue
+    });
     useEffect(() => {
         collectionText.current?.focus();
     }, []);
 
     const submitHandler = (e) => {
         e.preventDefault();
+        fetchdata();
+        dispatch(ChangeIsloading());
+
     };
 
-    console.dir(cancel);
+
+    if (loading) {
+        return <Loader/>;
+    }
 
     return (
         <>
@@ -32,10 +53,13 @@ const AddCollections = ({ placeholder, Cancel, remove, st, ...props }) => {
                         classname={css.formGroup}
                         placeholder={placeholder}
                         ref={collectionText}
+                        onChange={(e) => setCollection(e.target.value)}
+                        defaultValue={collectionValue}
                         type="text"
+                        error={errorV && errorV}
                     />
                     <div className={css.btn_group}>
-                        <Button classname={css.btn_group_item} text="Add" />
+                        <Button classname={css.btn_group_item} text="Add"/>
                         <Button
                             classname={css.btn_group_item}
                             ref={cancel}

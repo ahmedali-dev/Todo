@@ -1,9 +1,10 @@
-import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import {useState} from "react";
+import {Link, useLocation} from "react-router-dom";
 import AddCollections from "./Add-collection";
 import css from "./collectionList.module.scss";
+
 const CollectionsList = (props) => {
-    const { pathname } = useLocation();
+    const {pathname} = useLocation();
     const [addcoll, setAddcoll] = useState(false);
     //console.log(locations);
     return (
@@ -22,10 +23,10 @@ const CollectionsList = (props) => {
                     key={list.id}
                 >
                     <div>
-                        <div className={css.name}>{list.name}</div>
-                        <div className={css.collInfo}>
-                            {list.completed.length}/{list.tasks.length}
-                        </div>
+                        <div className={css.name}>{list.collection}</div>
+                        {/*<div className={css.collInfo}>*/}
+                        {/*    {list.completed.length}/{list.tasks.length}*/}
+                        {/*</div>*/}
                     </div>
                 </Link>
             ))}
