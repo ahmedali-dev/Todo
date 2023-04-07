@@ -25,7 +25,7 @@ const Edit = (props) => {
         <>
             <div className={css.EditAccountInfo}>
                 <div className={css.EditAccountInfo_img}>
-                    <img src={`http://192.168.1.2:8080/${userImage}`} alt="user avatar"/>
+                    <img src={`https://ToDo.ahmedali-dev.repl.co/${userImage}`} alt="user avatar"/>
                 </div>
                 <div className={css.EditAccountInfo_form}>
                     <form>
