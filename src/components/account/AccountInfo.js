@@ -18,7 +18,7 @@ const AccountInfo = ({data, setLoading, ...props}) => {
         }, 3000);
     }
     return (
-        <>')}
+        <>
             <div className={css.AccountInfo}>
                 <div className={css.AccountInfo_image}>
                     <div className={css.AccountInfo_image_img}>
