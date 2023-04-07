@@ -48,7 +48,7 @@ const Header = (props) => {
                         {/* <p className={css.text}>Collections</p> */}
 
                         <img
-                            src={`https://replit.com/@ahmedali-dev/ToDo#image/${userImage}`}/>
+                            src={`https://todo.ahmedali-dev.repl.co/${userImage}`}/>
                     </NavLink>
                 </div>
             </div>
