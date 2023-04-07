@@ -47,7 +47,7 @@ const Signup = (props) => {
         const passwordv = password;
 
 
-        const signup = await fetch("https://ToDo.ahmedali-dev.repl.co/signup", {
+        const signup = await fetch("httpss://ToDo.ahmedali-dev.repl.co/signup", {
             method: "POST",
             body: JSON.stringify({
                 name: namev,
