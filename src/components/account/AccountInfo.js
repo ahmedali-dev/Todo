@@ -23,7 +23,7 @@ const AccountInfo = ({data, setLoading, ...props}) => {
                 <div className={css.AccountInfo_image}>
                     <div className={css.AccountInfo_image_img}>
                         <img
-                            src={`https://ToDo.ahmedali-dev.repl.co/${data && data.userImage}`}/>
+                            src={`https://replit.com/@ahmedali-dev/ToDo#image/${data && data.userImage}`}/>
                         <Button text="Edit"/>
                     </div>
                     <div className={css.AccountInfo_image_name}>
