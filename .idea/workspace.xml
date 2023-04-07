@@ -5,31 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="47abda2d-8341-4e00-ad12-dea9c5124ad8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/api/.idea/php.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/app/bootstrap.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/replit" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/UI/Loader.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/hooks/AddCollectionsHook.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/hooks/FetchCollectionsHook.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/store/Slices/CollectionSlice.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/store/Slices/RegisterSlice.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/store/Store.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/app/library/databasePhp/CurdAbstract.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/library/databasePhp/CurdAbstract.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/app/library/phpValidationInputs/Request/File/HandlerFiles.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/library/phpValidationInputs/Request/File/HandlerFiles.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/app/library/phpValidationInputs/Request/File/HanlderFilesMultiple.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/library/phpValidationInputs/Request/File/HanlderFilesMultiple.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/signin.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/UI/Loader.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UI/Loader.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/icons/icons.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/icons/icons.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/todos/collections/Add-collection.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/todos/collections/Add-collection.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/todos/collections/Add-collection.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/todos/collections/Add-collection.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/todos/collections/collectionList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/todos/collections/collectionList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/Header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/account/AccountInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/account/AccountInfo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/account/Edit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/account/Edit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/todos/collections/Navigation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/todos/collections/Navigation.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/todos/items/Items.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/todos/items/Items.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/AddCollectionsHook.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/AddCollectionsHook.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/FetchCollectionsHook.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/FetchCollectionsHook.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Account.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Account.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Signin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Signin.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Signup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/collections.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/collections.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/item-collections.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/item-collections.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/Slices/RegisterSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/Slices/RegisterSlice.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,6 +73,7 @@
     "nodejs_package_manager_path": "npm",
     "prettierjs.PrettierConfiguration.Package": "E:\\bootcamp\\projects\\react\\reactRouter\\node_modules\\prettier",
     "settings.editor.selected.configurable": "editor.preferences.completion",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2022.3.4\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -112,7 +107,8 @@
       <workItem from="1680647940482" duration="27000" />
       <workItem from="1680647989205" duration="3727000" />
       <workItem from="1680655516167" duration="6764000" />
-      <workItem from="1680727871210" duration="17691000" />
+      <workItem from="1680727871210" duration="29548000" />
+      <workItem from="1680836583742" duration="13709000" />
     </task>
     <servers />
   </component>

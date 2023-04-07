@@ -1,19 +1,31 @@
-import { useRef, useState } from "react";
+import {useRef, useState} from "react";
 import Button from "../UI/Button";
 import Input from "../UI/Input";
 import css from "./AccountInfo.module.scss";
+import {useSelector} from "react-redux";
+
 const Edit = (props) => {
-    const [img, setImg] = useState("");
+    const {userImage} = useSelector(state => state.register);
+    const [img, setImg] = useState();
+    const [name, setName] = useState(props.data.name);
+    const [email, setEmail] = useState(props.data.email);
     const image = useRef();
     const url = () => {
         console.log(image);
-        setImg(URL.createObjectURL(image.current.files[0]));
+        // URL.createObjectURL(image.current.files[0])
+        setImg(image.current.files[0]);
     };
+
+
+    const saveHanlder = () => {
+        props.EditeHanlder(img, name, email)
+        props.Edit();
+    }
     return (
         <>
             <div className={css.EditAccountInfo}>
                 <div className={css.EditAccountInfo_img}>
-                    <img src={img} alt="user avatar" />
+                    <img src={`http://192.168.1.2:8080/${userImage}`} alt="user avatar"/>
                 </div>
                 <div className={css.EditAccountInfo_form}>
                     <form>
@@ -25,9 +37,12 @@ const Edit = (props) => {
                             classname={css.file}
                         />
 
-                        <Input type="text" label="Name" placeholder="Name" />
-                        <Input type="text" label="Email" placeholder="Email" />
-                        <Button text="Save" onClick={props.Edit} />
+                        <Input type="text" defaultValue={name} onChange={(e) => setName(e.target.value)} label="Name"
+                               placeholder="Name"/>
+                        <Input type="text" defaultValue={email} onChange={(e) => setEmail(e.target.value)}
+                               label="Email"
+                               placeholder="Email"/>
+                        <Button text="Save" onClick={saveHanlder}/>
                     </form>
                 </div>
             </div>

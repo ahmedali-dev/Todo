@@ -10,7 +10,7 @@ trait HanlderFilesMultiple
             var_dump($item);
             $compSize = $size * $this->fileSize;
             if ($requestValues < $compSize):
-                echo $compSize . 'min' . br;
+
                 $this->requests[$requestName]['error'][$item] = "file should you large then {$size}mb";
             endif;
         }
@@ -22,7 +22,7 @@ trait HanlderFilesMultiple
             var_dump($item);
             $compSize = $size * $this->fileSize;
             if ($requestValues > $compSize):
-                echo $compSize . 'max' . br;
+
                 $this->requests[$requestName]['error'][$item] = "file should you less then {$size}mb";
             endif;
         }
@@ -38,5 +38,7 @@ trait HanlderFilesMultiple
             }
         }
     }
+
+
 
 }

@@ -90,7 +90,7 @@ class CurdAbstract extends DbAbstract
      * @param string|null $where
      * @return bool|string
      */
-    function update(string $table, array $data, string|null $where = null): string|bool
+    function update(string $table, array $data, string $where = null): string|bool
     {
         try {
             $set = [];

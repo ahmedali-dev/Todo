@@ -47,7 +47,7 @@ const Signup = (props) => {
         const passwordv = password;
 
 
-        const signup = await fetch("https://todo.ahmedali-dev.repl.co/signup", {
+        const signup = await fetch("http://https://ToDo.ahmedali-dev.repl.co/signup", {
             method: "POST",
             body: JSON.stringify({
                 name: namev,
@@ -70,6 +70,7 @@ const Signup = (props) => {
         } else {
             toast.success(data.message);
             setloading(false);
+            localStorage.setItem('image', data.userImage)
             localStorage.setItem('token', data.token);
             dispatch(SignUpAction({token: data.token}));
             navigate("collections");

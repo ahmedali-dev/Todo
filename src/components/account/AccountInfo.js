@@ -1,16 +1,33 @@
 import Button from "../UI/Button";
 import css from "./AccountInfo.module.scss";
-const AccountInfo = (props) => {
+import {useDispatch, useSelector} from "react-redux";
+import {LogoutAction} from "../../store/Slices/RegisterSlice";
+import {useEffect, useLayoutEffect, useState} from "react";
+import Loader from "../UI/Loader";
+import {FetchAccountData} from "../../hooks/FetchCollectionsHook";
+import {toast} from "react-hot-toast";
+
+const AccountInfo = ({data, setLoading, ...props}) => {
+
+    const dispatch = useDispatch();
+    const SignOut = () => {
+        setLoading(true);
+        setTimeout(() => {
+            dispatch(LogoutAction())
+            setLoading(false);
+        }, 3000);
+    }
     return (
-        <>
+        <>')}
             <div className={css.AccountInfo}>
                 <div className={css.AccountInfo_image}>
                     <div className={css.AccountInfo_image_img}>
-                        <img src="https://images.unsplash.com/photo-1630241351048-7e29a0801419?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8dmlvbGV0JTIwcGV0YWxzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" />
-                        <Button text="Edit" />
+                        <img
+                            src={`http://192.168.1.2:8080/${data && data.userImage}`}/>
+                        <Button text="Edit"/>
                     </div>
                     <div className={css.AccountInfo_image_name}>
-                        <h1>AhmedAli</h1>
+                        <h1>{data && data.name}</h1>
                     </div>
                 </div>
 
@@ -18,7 +35,7 @@ const AccountInfo = (props) => {
                     <div className={css.info_card}>
                         <div className={css.info_card_info}>
                             <p>Name</p>
-                            <h3>Ahmedali</h3>
+                            <h3>{data && data.name}</h3>
                         </div>
                         <Button
                             classname={css.info_card_action}
@@ -30,7 +47,7 @@ const AccountInfo = (props) => {
                     <div className={css.info_card}>
                         <div className={css.info_card_info}>
                             <p>Email</p>
-                            <h3>AhmedAli@gmail.com</h3>
+                            <h3>{data && data.email}</h3>
                         </div>
                         <Button
                             classname={css.info_card_action}
@@ -52,7 +69,7 @@ const AccountInfo = (props) => {
                 </div>
             </div>
 
-            <Button classname={css.Signout} text={"Sign Out"} />
+            <Button classname={css.Signout} onClick={SignOut} text={"Sign Out"}/>
         </>
     );
 };

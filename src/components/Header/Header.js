@@ -1,9 +1,11 @@
 import {Link, NavLink} from "react-router-dom";
 import css from "./Header.module.scss";
 import {CollSvg, WishListSvg} from "../icons/icons";
+import {useSelector} from "react-redux";
 
 
 const Header = (props) => {
+    const {userImage} = useSelector(state => state.register);
     return (
         <nav className={css.nav}>
             <div className={css.nav_left}>
@@ -46,7 +48,7 @@ const Header = (props) => {
                         {/* <p className={css.text}>Collections</p> */}
 
                         <img
-                            src="https://images.unsplash.com/photo-1598097599413-17a71172168c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8YW5nZWxhfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"/>
+                            src={`http://192.168.1.2:8080/${userImage}`}/>
                     </NavLink>
                 </div>
             </div>

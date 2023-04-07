@@ -3,6 +3,7 @@ import {createSlice} from "@reduxjs/toolkit";
 
 const intiState = {
     token: '',
+    userImage: '',
     isloading: true
 };
 const RegisterSlice = createSlice({
@@ -10,12 +11,15 @@ const RegisterSlice = createSlice({
     initialState: intiState,
     reducers: {
         SignUpAction: (state, action) => {
-            const {token} = action.payload;
+            const {token, userImage} = action.payload;
             state.token = token;
+            state.userImage = userImage;
         },
         LogoutAction: (state) => {
             localStorage.removeItem('token')
+            localStorage.removeItem('image')
             state.token = null;
+            state.userImage = null;
         },
         ChangeIsloading: (state) => {
             state.isloading = !state.isloading;

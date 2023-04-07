@@ -12,7 +12,7 @@ const AddCollectionsHook = (props) => {
     // useEffect(() => {
     const FetchData = async () => {
         props.loading(true);
-        const url = "https://todo.ahmedali-dev.repl.co/addcollections";
+        const url = "https://ToDo.ahmedali-dev.repl.co/addcollections";
         const request = await fetch(
             url,
             {

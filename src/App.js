@@ -15,8 +15,10 @@ const App = (props) => {
 
     useLayoutEffect(() => {
         const getToken = localStorage.getItem('token');
+        const getImage = localStorage.getItem('image');
         if (getToken) {
-            dispatch(SignUpAction({token: getToken}));
+            console.log(getImage)
+            dispatch(SignUpAction({token: getToken, userImage: getImage}));
         }
     }, []);
 

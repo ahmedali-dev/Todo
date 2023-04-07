@@ -28,7 +28,7 @@ const Signin = (props) => {
     const submith = async (e) => {
         e.preventDefault();
         setloading(true);
-        const signup = await fetch("https://todo.ahmedali-dev.repl.co/signin", {
+        const signup = await fetch("http://https://ToDo.ahmedali-dev.repl.co/signin", {
             method: "POST",
             body: JSON.stringify({
                 email,
@@ -50,7 +50,8 @@ const Signin = (props) => {
             toast.success(data.message);
             setloading(false);
             localStorage.setItem('token', data.token);
-            dispatch(SignUpAction({token: data.token}));
+            localStorage.setItem('image', data.userImage);
+            dispatch(SignUpAction({token: data.token, userImage: data.userImage}));
             // navigate("collections");
         }
     };

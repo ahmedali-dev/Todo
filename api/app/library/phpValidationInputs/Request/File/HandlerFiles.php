@@ -60,7 +60,6 @@ class HandlerFiles extends Files
 
 
             if ($rq) {
-                echo $item . br;
                 $this->setError($item, "request {$item} is required");
                 $status = true;
                 continue;
@@ -76,11 +75,11 @@ class HandlerFiles extends Files
         foreach ($this->requests as $request => $value) {
             $size = intval($this->RuleFilterValue($value['rules'], "min:"));
             if (is_string($value['name'])) {
-                echo 'asfdas' . br;
+
                 if ($size !== false) {
                     $compSize = $size * $this->fileSize;
                     if ($value['size'] < $compSize):
-                        echo $compSize . 'min' . br;
+
                         $this->setError($request, "file should you large then {$size}mb");
                     endif;
                 }
@@ -98,7 +97,7 @@ class HandlerFiles extends Files
                 if ($size !== false) {
                     $compSize = $size * $this->fileSize;
                     if ($value['size'] > $compSize):
-                        echo $compSize . 'max' . br;
+
                         $this->setError($request, "file should you less then {$size}mb");
                         return false;
                     endif;
@@ -131,5 +130,35 @@ class HandlerFiles extends Files
             endif;
         }
         return true;
+    }
+
+    public function getAllError() {
+        $error = [];
+        foreach ($this->requests as $request => $value) {
+            if(isset($this->requests[$request])) {
+                if (is_string($value['error'])) {
+                    if (!empty($value['error'])){
+                        $error[$request] = $value['error'];
+                    }
+                }else{
+//                if ()
+                    foreach ($value as $item => $v) {
+                        if (!empty($v['error'])) {
+                            $error[$request]['error'][$item] = $v;
+                        }
+                    }
+                }
+            }
+        }
+
+        if (empty($error)){
+            return true;
+        }
+
+        return $error;
+    }
+
+    public function value($requestName){
+        return $this->requests[$requestName];
     }
 }
