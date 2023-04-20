@@ -75,7 +75,7 @@ class HanlderInputValidator extends Input
 
             switch ($type) {
                 case "string":
-                    $value = filter_var($value, FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH);
+                    $value = filter_var($value, FILTER_SANITIZE_STRING);
                     $this->overWriteRequests($request, $item, $value);
                     break;
                 case "email":

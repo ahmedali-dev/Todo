@@ -1,17 +1,21 @@
 import React from "react";
-import {BrowserRouter} from "react-router-dom";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import {Store} from "./store/Store";
+import {BrowserRouter} from "react-router-dom";
+import {AuthProvider} from "./Store/Auth-context";
 import {Provider} from "react-redux";
+import Store from "./Store/Store";
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <>
-        <BrowserRouter>
+        <AuthProvider>
             <Provider store={Store}>
-                <App/>
+                <BrowserRouter>
+                    <App/>
+                </BrowserRouter>
             </Provider>
-        </BrowserRouter>
+        </AuthProvider>
     </>
 );

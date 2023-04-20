@@ -29,11 +29,11 @@ trait MoreOptions
                     case "string":
 
                         if ($ruleType == 'min:') {
-                            if (strlen($value['value']) < intval($length)) {
+                            if (mb_strlen($value['value'] ,'UTF-8') < intval($length)) {
                                 $this->setError($request, $msg($request, $length));
                             }
                         } else {
-                            if (strlen($value['value']) > intval($length)) {
+                            if (mb_strlen($value['value'] ,'UTF-8') > intval($length)) {
                                 $this->setError($request, $msg($request, $length));
                             }
                         }
@@ -42,13 +42,13 @@ trait MoreOptions
 
                         if ($ruleType == 'min:') {
                             $email = substr($value['value'], 0, strpos($value['value'], "@"));
-                            if (strlen($email) < intval($length)) {
+                            if (mb_strlen($email ,'UTF-8') < intval($length)) {
                                 $this->setError($request, $msg($request, $length));
                             }
                         } else {
                             $email = substr($value['value'], 0, strpos($value['value'], "@"));
 
-                            if (strlen($email) > intval($length)) {
+                            if (mb_strlen($email ,'UTF-8') > intval($length)) {
                                 $this->setError($request, $msg($request, $length));
                             }
                         }

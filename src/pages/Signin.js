@@ -1,94 +1,140 @@
-import {useState} from "react";
-import Register from "../components/register/Register-form";
-import css from "./../components/register/Register.module.scss";
-import Button from "../components/UI/Button";
+import {useContext, useRef, useState} from "react";
+import AuthContext from "../Store/Auth-context";
+import {Formik, isString} from 'formik';
+import * as yup from 'yup';
 import Input from "../components/UI/Input";
-import {useNavigate} from "react-router-dom";
+import Button from "../components/UI/Button";
+import css from "./Signup.module.scss";
+import {Link} from "react-router-dom";
+import authImage from './../components/icons/authImage.png';
+import Reload from "../components/Reloading/Reload";
 import {toast} from "react-hot-toast";
-import {SignUpAction} from "../store/Slices/RegisterSlice";
-import {useDispatch} from "react-redux";
-import Loader from "../components/UI/Loader";
+import instance from "../hooks/axios";
 
-const span = () => (
-    <>
-        Create New <span>Account !</span>
-    </>
-);
-const Signin = (props) => {
+const Signin = () => {
 
-    const dispatch = useDispatch();
+    const [loading, setLoading] = useState(false);
+    const auth = useContext(AuthContext);
+    // const name = useRef();
+    // const email = useRef();
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const submit = async (values, actions) => {
+        setLoading(true);
 
-    const [emailError, setemailError] = useState('');
-    const [passwordError, setpasswordError] = useState('');
-    const [loading, setloading] = useState(false);
-    const navigate = useNavigate();
-    const submith = async (e) => {
-        e.preventDefault();
-        setloading(true);
-        const signup = await fetch("https://ToDo.ahmedali-dev.repl.co/signin", {
-            method: "POST",
-            body: JSON.stringify({
-                email,
-                password
-            }),
-        });
-        if (!signup.ok) {
-            toast.error("SignUp failed");
-            setloading(false);
-            return;
+        try {
+            const req = await instance.post('/signin', {
+                email: values.email,
+                password: values.password
+            });
+
+            if (req.status !== 200) {
+                toast.error("SignIn Filed");
+            }
+
+
+            const data = req.data;
+            if (data?.status !== 200) {
+                actions.setErrors({
+                    email: data?.error?.email,
+                    password: data?.error?.password
+                });
+                // eslint-disable-next-line no-unused-expressions
+                isString(data?.error) ? toast.error(data?.error) : null;
+            } else {
+                toast.success(data.message);
+                setTimeout(() => {
+                    auth.login(data?.token, data?.avatar);
+                }, 1000)
+            }
+        } catch (e) {
+            toast.error(e.message());
         }
-        const data = await signup.json();
-        if (data.status != 200) {
-            toast.error("SignUp failed");
-            setemailError(data.error.email && data.error.email);
-            setpasswordError(data.error.password && data.error.password);
-            setloading(false);
-        } else {
-            toast.success(data.message);
-            setloading(false);
-            localStorage.setItem('token', data.token);
-            localStorage.setItem('image', data.userImage);
-            dispatch(SignUpAction({token: data.token, userImage: data.userImage}));
-            // navigate("collections");
-        }
-    };
-
-
-    if (loading) {
-        return <Loader/>;
+        setLoading(false);
+        // setTimeout(() => {
+        //     const data = JSON.stringify({email: values.email})
+        //
+        //     setTimeout(() => {
+        //         toast.success('Signup successfully')
+        //         auth.login(data);
+        //
+        //     }, 1000)
+        // }, 2000);
     }
     return (
-        <Register
-            onSubmit={submith}
-            link="/signup"
-            selection={span()}
-            header={"Welcome Back"}
-        >
-            <Input
-                classname={css.formGroup}
-                onChange={(e) => setEmail(e.target.value)}
-                label="Email"
-                type="email"
-                placeholder="Email"
-                defaultValue={email}
-                error={emailError && emailError}
-            />
+        <div>
+            <Formik
+                initialValues={{
+                    email: '',
+                    password: '',
+                }}
+                validationSchema={yup.object({
+                    email: yup.string().min(3, 'Must be 3 character or large')
+                        .max(100, 'Must be 100 character or less')
+                        .email('Invalid email').required("Required"),
+                    password: yup.string().min(8, 'Must be 8 character or large')
+                        .max(32, "Must be 32 character or less")
+                        .required("Required")
+                })}
+                onSubmit={submit}
+            >
+                {formik => (
 
-            <Input
-                classname={css.formGroup}
-                onChange={(e) => setPassword(e.target.value)}
-                label="Password"
-                type="password"
-                placeholder="********"
-                defaultValue={password}
-                error={passwordError && passwordError}
-            />
-            <Button text={"Signin"} classname={css.formGroup}/>
-        </Register>
-    );
-};
+                    <div className={css.auth}>
+                        <div className={css.auth_header}>
+                            <div className={css.auth_header_text}>Welcome Back</div>
+                            <div className={css.auth_header_image}>
+                                <img src={authImage} alt="auth logo"/>
+                            </div>
+                        </div>
+
+                        <div className={css.auth_form}>
+                            <div className={css.auth_form_text}>Welcome Back</div>
+                            <form onSubmit={formik.handleSubmit}>
+                                <Input
+                                    classname={css.formGroup}
+                                    // onChange={(e) => setEmail(e.target.value)}
+                                    label="Email"
+                                    type="email"
+                                    placeholder="Email"
+                                    name={'email'}
+                                    className={css.formGroup_input}
+                                    {...formik.getFieldProps('email')}
+                                    error={formik.touched.email && formik.errors.email ? formik.errors.email : null}
+                                />
+
+                                <Input
+                                    classname={css.formGroup}
+                                    label="Password"
+                                    type="password"
+                                    placeholder="********"
+                                    name={'password'}
+                                    className={css.formGroup_input}
+                                    {...formik.getFieldProps('password')}
+                                    error={formik.touched.password && formik.errors.password ? formik.errors.password : null}
+                                    // defaultValue={password}
+                                    // error={passwordError && passwordError}
+                                />
+                                <div className={css.formGroup}>
+                                    <Link className={css.formGroup_forgetPass} to={'/auth/signup'}>Forget
+                                        a <span>password!</span></Link>
+                                </div>
+                                {/*text={"Signin"}*/}
+                                <Button className={css.formGroup_btn} type={'submit'}
+                                        text={loading ? <Reload/> : 'SignIn'}
+                                        classname={css.formGroup}/>
+                                <div className={css.formGroup}>
+                                    <Link className={css.formGroup_redir} to={'/auth/signup'}>Create
+                                        New <span>Account!</span></Link>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                )
+                }
+            </Formik>
+        </div>
+    )
+}
 
 export default Signin;

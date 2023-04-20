@@ -1,30 +1,38 @@
 .collections {
-	background: inhreit;
-	//	margin-top: 10rem;
-	min-height: 100vh;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-flow: column;
+  margin: 4rem auto auto auto;
+  max-width: 1440px;
+  @media screen and (min-width: 2440px) {
+    zoom: 2.5;
+    margin-top: 6rem;
+  }
 
-	.collList {
-		width: 100%;
-	}
+  &_header {
+    text-align: center;
 
-	.collHeader {
-		color: var(--cblue70);
-		text-align: center;
-		font-size: 3rem;
-		border: 0.4rem solid transparent;
-		border-bottom-color: var(--cblue70);
-		width: max-content;
-		margin-bottom: 2.6rem;
-		font-weight: 600;
-		border-radius: 0.5rem;
-	}
+    h1 {
+      color: var(--blue);
+      font-size: 3rem;
+      width: max-content;
+      margin: auto;
+      border-bottom: .3rem solid var(--blue);
+    }
+  }
 
-	@media screen and (min-width: 768px) {
-		max-width: 1400px;
-		margin: auto;
-	}
+
+  &_btn {
+    &_btn {
+      width: 20rem;
+      margin: auto;
+      margin: 2rem auto;
+
+      button {
+        width: inherit;
+        border-color: var(--gray);
+
+        svg {
+          fill: var(--gray);
+        }
+      }
+    }
+  }
 }

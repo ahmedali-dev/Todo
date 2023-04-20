@@ -5,7 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5bfdc99b-8522-4021-b992-9e61f14b7cf9" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/components/Header/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/components/Header/Header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/components/account/AccountInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/components/account/AccountInfo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/components/account/Edit.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/components/account/Edit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/hooks/AddCollectionsHook.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/hooks/AddCollectionsHook.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/hooks/FetchCollectionsHook.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/hooks/FetchCollectionsHook.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/pages/Signin.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/pages/Signin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/pages/Signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/pages/Signup.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +56,8 @@
       <updated>1680706961317</updated>
       <workItem from="1680706962128" duration="6720000" />
       <workItem from="1680727885780" duration="20899000" />
-      <workItem from="1680836576975" duration="24065000" />
+      <workItem from="1680836576975" duration="24829000" />
+      <workItem from="1681001877020" duration="4000" />
     </task>
     <servers />
   </component>

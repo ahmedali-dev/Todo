@@ -1,11 +1,13 @@
-import {configureStore} from "@reduxjs/toolkit";
-import RegisterSlice from "./Slices/RegisterSlice";
-import CollectionSlice from "./Slices/CollectionSlice";
+import {configureStore} from '@reduxjs/toolkit';
+import CollectionsSlice from "./slices/CollectionsSlice";
+import TaskSlice from "./slices/TaskSlice";
 
-export const Store = configureStore({
+
+const Store = configureStore({
     reducer: {
-        register: RegisterSlice,
-        collections: CollectionSlice,
-
+        collections: CollectionsSlice,
+        task: TaskSlice
     }
 });
+
+export default Store;
